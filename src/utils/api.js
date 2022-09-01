@@ -1,0 +1,1 @@
+const APIURL = `http://fitnesstrac-kr.herokuapp.com/api`
