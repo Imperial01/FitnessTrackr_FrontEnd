@@ -1,2 +1,2 @@
 export { default as App } from './App'
-export { default as Users} from './Users'
+export { default as Register} from './Register'
