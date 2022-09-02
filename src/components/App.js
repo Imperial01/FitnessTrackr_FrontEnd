@@ -2,13 +2,15 @@ import { React, useState } from "react";
 import { Link, Route, Switch, NavLink } from "react-router-dom"
 import './styles.css'
 import Register from "./Register";
+import Login from "./Login";
 
 
 
 const App = () => {
 
     const [token, setToken] = useState('')
-    const [username, setUserName] = useState('')
+    const [username, setUsername] = useState('')
+    const [user, setUser] = useState({})
 
     return <main>
         <nav id= 'navbar'>
@@ -21,11 +23,17 @@ const App = () => {
             </div>
         </nav>
 
-        <Route exact path = '/'>
-            <Register token = {token} setToken = {setToken}/> 
-        </Route>
+        <Switch>
+            <Route exact path = '/'>
+                <Register token = {token} setToken = {setToken} 
+                username = {username} setUsername = {setUsername}/> 
+            </Route>
 
-
+            <Route path = '/login'>
+                <Login setToken = {setToken} username = {username} 
+                setUsername = {setUsername} setUser = {setUser}/>
+            </Route>
+        </Switch>
 
 
     </main>
