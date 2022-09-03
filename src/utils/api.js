@@ -1,5 +1,6 @@
-const APIURL = `http://fitnesstrac-kr.herokuapp.com/api`
+const APIURL = `http://fitnesstrac-kr.herokuapp.com/api`;
 
+//USER ENDPOINTS
 export const fetchRegister = async (username, password) => {
     const response = await fetch(`${APIURL}/users/register`, {
         method: 'POST',
@@ -22,6 +23,7 @@ export const fetchRegister = async (username, password) => {
     }
 }
 
+
 export const fetchAllRoutines = async () => {
     const response = await fetch(`${APIURL}/routines`, {
         method: 'GET',
@@ -31,4 +33,25 @@ export const fetchAllRoutines = async () => {
     const result = await response.json();
     console.log(result);
     }
-    
+
+export const fetchLogin = async (username, password) => {
+    const response = await fetch(`${APIURL}/users/login`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    })
+
+    const result = await response.json();
+    console.log(result);
+
+    if(!result.token){
+        alert(result.error)
+    } else {
+        return result
+    }
+}

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { fetchRegister } from "../utils/api";
 
 
 
 
-const Register = ({token, setToken}) => {
+const Register = ({token, setToken, username, setUsername}) => {
 
-    const [username, setUserName] = useState('');
     const [password, setPassword] = useState(''); 
+    const history = useHistory();
 
     const handleChangeUser = (event) => {
-        setUserName(event.target.value)
+        setUsername(event.target.value)
     }
 
     const handleChangePassword = (event) => {
@@ -22,9 +23,10 @@ const Register = ({token, setToken}) => {
         event.preventDefault(); 
         const registeredToken = await fetchRegister(username, password)
         setToken(registeredToken)
-        console.log(token)
-        setUserName('')
+        console.log(registeredToken)
+        setUsername('')
         setPassword('')
+        history.push('/login')
     }
 
 
@@ -36,7 +38,7 @@ const Register = ({token, setToken}) => {
                 <h1>You're Signed Up! Get Tracking!</h1>
             </> :
          <>
-            <h1 id = "register">Sign Up</h1>
+            <h1 id = "register-head">Sign Up</h1>
                 <div id= "signup-container">
                     <form id= "register-form" onSubmit={handleSubmit}>
                         <label htmlFor="Username">Username</label>
