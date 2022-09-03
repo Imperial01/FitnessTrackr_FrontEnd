@@ -24,19 +24,22 @@ import { Link, useHistory } from "react-router-dom";
 import { fetchAllRoutines } from "../utils/api";
 
 const Routines = (props) => {
+    const history = useHistory();
     const {
         routines, setRoutines,
         routineID, setRoutineID, token,
         featuredPost, setFeaturedRoutine, search, setSearch } = props
 
-    const history = useHistory();
 
-    const routine = async () => {
+    const routinePost = async () => {
         setRoutines(await fetchAllRoutines())
     }
 
+
+
+
     useEffect(() => {
-        routine();
+        routinePost();
     }, []);
 
 
@@ -72,15 +75,14 @@ const Routines = (props) => {
                 <input type="text" name="search" placeholder="Search Routine" value={search} onChange={handleSearch}></input>
                 {/* <button style={{ fontSize: "15px" }} onClick={handleClick}>Create a Routine +</button> */}
             </form>
-
-            {
+            { routines ?
                 routines.filter(routine => {
-
-                    return `${routine.title} ${routine.description}`
-                        //After creating a routine, I can't see my Routines because of a TypeError "Cannot read properties of undefined (reading "title") Routine.js line 49:1
+        
+                    return `${routine.name}`
+                    //After creating a post, I can't see my Posts because of a TypeError "Cannot read properties of undefined (reading "title") Post.js line 49:1
                         .toLowerCase()
                         .includes(search.toLowerCase())
-                }).map((routine) => {
+      })            .map((routine) => {
                     return (
                         <>
                             {/* <div onClick={(event) => {
@@ -100,7 +102,8 @@ const Routines = (props) => {
                             
                         </>
                     );
-                })}
+                }): null
+            }
         </div>
     );
 };
