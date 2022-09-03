@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { fetchActivities } from "../utils/api";
 
-const Activities = () => {
-    const [activities, setActivities,
-        activitiesId, setActivitiesId, token] = useState([])
+const Activities = ({token, search, setSearch}) => {
+    const [activities, setActivities] = useState([])
+    const [activitiesId, setActivitiesId ] = useState('')
 
     const history = useHistory();
 
@@ -16,7 +16,7 @@ const Activities = () => {
         activity()
     }, []);
 
-    const handleActivities = (event, activities) => {
+    const handleActivities = (event, activity) => {
         if(token) {
             setActivities(activities)
             setActivitiesId(activities._id)
@@ -26,9 +26,23 @@ const Activities = () => {
         }
     }
 
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    }
+
     return (
         <div>
-            {activities.filter(activity => {
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="search" placeholder="Search Activity" value={search} onChange={handleSearch}></input>
+                {/* <button style={{ fontSize: "15px" }} onClick={handleClick}>Create a Routine +</button> */}
+            </form>
+            { activities ?
+            
+            activities.filter(activity => {
                 return `${activity.name} ${activity.description}`
                 .toLowerCase()
                 .includes(search.toLowerCase())
@@ -36,7 +50,7 @@ const Activities = () => {
                 return (
                     <>
                     <div id="activity-form" onClick={(event) => {
-                        {handleActivities(event, activities)}
+                        {handleActivities(event, activity)}
                     }}>
                     </div>
                         <div>
@@ -48,7 +62,8 @@ const Activities = () => {
                         </div>
                     </>
                 )
-            })}
+            }): null 
+        }
         </div>
     )
 }
