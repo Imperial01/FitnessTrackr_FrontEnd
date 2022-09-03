@@ -37,7 +37,7 @@ const Register = ({token, setToken, username, setUsername}) => {
             <>
                 <h1>You're Signed Up! Get Tracking!</h1>
             </> :
-         <>
+        <>
             <h1 id = "register-head">Sign Up</h1>
                 <div id= "signup-container">
                     <form id= "register-form" onSubmit={handleSubmit}>
@@ -49,7 +49,7 @@ const Register = ({token, setToken, username, setUsername}) => {
                     </form>
                     <small>* must be {`>`} 8 characters</small>
                 </div> 
-         </> 
+        </> 
         
         }
             

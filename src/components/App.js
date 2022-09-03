@@ -39,7 +39,7 @@ const App = () => {
                 setUsername = {setUsername} setUser = {setUser}/>
             </Route>        
             <Route path = '/Routines'>
-              <Routines setSearch = {setSearch} search = {search} routines = {routines} setRoutines = {setRoutines}/> 
+            <Routines setSearch = {setSearch} search = {search} routines = {routines} setRoutines = {setRoutines}/> 
             </Route>
         </Switch>
 

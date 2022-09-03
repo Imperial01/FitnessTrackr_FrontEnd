@@ -82,7 +82,7 @@ const Routines = (props) => {
                     //After creating a post, I can't see my Posts because of a TypeError "Cannot read properties of undefined (reading "title") Post.js line 49:1
                         .toLowerCase()
                         .includes(search.toLowerCase())
-      })            .map((routine) => {
+        })            .map((routine) => {
                     return (
                         <>
                             {/* <div onClick={(event) => {
