@@ -21,3 +21,14 @@ export const fetchRegister = async (username, password) => {
         return(result.token)
     }
 }
+
+export const fetchAllRoutines = async () => {
+    const response = await fetch(`${APIURL}/routines`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }})
+    const result = await response.json();
+    console.log(result);
+    }
+    

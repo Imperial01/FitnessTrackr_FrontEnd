@@ -2,11 +2,13 @@ import { React, useState } from "react";
 import { Link, Route, Switch, NavLink } from "react-router-dom"
 import './styles.css'
 import Register from "./Register";
+import Routines from "./Routines";
 
 
 
 const App = () => {
-
+    const [routines, setRoutines] = useState([])
+    const [search, setSearch] = useState('')
     const [token, setToken] = useState('')
     const [username, setUserName] = useState('')
 
@@ -24,7 +26,9 @@ const App = () => {
         <Route exact path = '/'>
             <Register token = {token} setToken = {setToken}/> 
         </Route>
-
+        <Route path = '/Routines'>
+            <Routines setSearch = {setSearch} search = {search} routines = {routines} setRoutines = {setRoutines}/> 
+        </Route>
 
 
 
