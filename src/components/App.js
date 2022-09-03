@@ -5,6 +5,7 @@ import Register from "./Register";
 import Routines from "./Routines";
 import Login from "./Login";
 import CreateRoutine from "./CreateRoutine";
+import Activities from "./Activities";
 
 
 
@@ -58,6 +59,9 @@ const App = () => {
             </Route>
             <Route path = '/MyRoutines'>
               <CreateRoutine token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} /> 
+            </Route>
+            <Route path = '/activities'>
+              <Activities token = {token} search = {search} setSearch = {setSearch}/> 
             </Route>
         </Switch>
 

@@ -25,8 +25,7 @@ export const fetchRegister = async (username, password) => {
 
 
 export const fetchActivities = async () => {
-    try {
-        const response = await fetch(`${APIURL}/activities`, {
+    const response = await fetch(`${APIURL}/activities`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application.json'
@@ -35,12 +34,9 @@ export const fetchActivities = async () => {
 
     const result = await response.json();
     console.log(result);
-
-    } catch (error) {
-        throw error;
-    }
+    return result
 }
-
+// fix try catch
 export const fetchCreateActivity = async (name, description) => {
     try {
         const response = await fetch(`${APIURL}/activities`, {
