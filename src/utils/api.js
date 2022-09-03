@@ -32,7 +32,10 @@ export const fetchAllRoutines = async () => {
         }})
     const result = await response.json();
     console.log(result);
+    return result
     }
+
+
 
 export const fetchLogin = async (username, password) => {
     const response = await fetch(`${APIURL}/users/login`, {
