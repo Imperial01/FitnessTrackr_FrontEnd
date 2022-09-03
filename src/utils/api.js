@@ -80,7 +80,7 @@ export const fetchUpdateActivities = async (name, description, activityId) => {
     } catch (error) {
         console.error('Activity could not be updated', error)
     }
-
+}
 
 export const fetchAllRoutines = async () => {
     const response = await fetch(`${APIURL}/routines`, {
@@ -91,7 +91,7 @@ export const fetchAllRoutines = async () => {
     const result = await response.json();
     console.log(result);
     return result
-    }
+}
 
 
 
