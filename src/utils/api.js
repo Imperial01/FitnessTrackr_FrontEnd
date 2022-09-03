@@ -58,3 +58,20 @@ export const fetchLogin = async (username, password) => {
         return result
     }
 }
+
+
+export const fetchCreateRoutine = async (name, goal, isPublic) => {
+    const response = await fetch(`${APIURL}/routines`,{
+        method: "POST",
+        body: JSON.stringify({
+            name: name,
+            goal: goal,
+            isPublic: isPublic
+        })
+    })
+
+    const result = await response.json();
+    console.log("POST FORM", result)
+    return result
+    
+}

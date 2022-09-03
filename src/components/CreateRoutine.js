@@ -1,0 +1,45 @@
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+
+const CreateRoutine = ({token, routines, setRoutines, setRoutineId}) => {
+
+    const [name, setName] = useState('')
+    const [goal, setGoal] = useState('')
+    const history = useHistory();
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if(token){
+            const createRoutinueForm = await fetchCreateRoutine(name, goal, isPublic)
+            setRoutines([createRoutinueForm, ...routines])
+            setRoutineId(createRoutinueForm.creatorId)
+            history.push('/routines')
+        }
+    }
+
+
+
+    return (<>
+        {!token ? <h1>LOG IN TO CREATE ROUTINE</h1>:
+    
+            <div id="createRoutine-containter">
+                <form id="createRoutine">
+                    <h2>Create a Routine</h2>
+                    <label>Name:</label>
+                    <input type="text" placeholder="Enter a Name" value={name} onChange={(event)=> setName(event.target.value)}></input>
+                    <br />
+                    <label>Goal:</label>
+                    <input type="text" placeholder="Enter a Goal" value={goal} onChange={(event)=> setGoal(event.target.value)}></input>
+                    <button id="form-submit" type="submit" onClick={handleSubmit}>Submit</button>
+                </form>  
+            </div>
+        }   
+        </>
+    )
+}
+
+
+
+export default CreateRoutine;
