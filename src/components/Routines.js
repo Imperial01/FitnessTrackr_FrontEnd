@@ -82,7 +82,8 @@ const Routines = (props) => {
                     //After creating a post, I can't see my Posts because of a TypeError "Cannot read properties of undefined (reading "title") Post.js line 49:1
                         .toLowerCase()
                         .includes(search.toLowerCase())
-        })            .map((routine) => {
+                    }).map((routine) => {
+        console.log("ROUTINE CHECK-------",routine.activities.name)
                     return (
                         <>
                             {/* <div onClick={(event) => {
@@ -90,16 +91,20 @@ const Routines = (props) => {
                             }}> */}
                                 <h1>{routine.name}</h1>
                                 <p>{routine.goal}</p>
-                                <div>
-                                    <b>By: </b> {routine.creatorName}
-                                </div>
-                                <div>
-                                    <b></b> {routine.activities.name}
-                                    <b></b> {routine.activities.description}
-                                    <b></b> {routine.activities.duration}
-                                    <b></b> {routine.activities.count}
-                                </div>
-                            
+                                <b>By: </b> {routine.creatorName}
+                                {
+                                routine.activities.map((activities) => {
+                                    return(
+                                        <>
+                                        <div key = {activities.id}>
+                                            <b>Name: </b> {activities.name} <br/>
+                                            <b>Description:</b> {activities.description}<br/>
+                                            <b>Duration:</b> {activities.duration} <br/>
+                                            <b>Count:</b> {activities.count} <br/>
+                                        </div>
+                                        </>
+                                    )
+                                    })}
                         </>
                     );
                 }): null
