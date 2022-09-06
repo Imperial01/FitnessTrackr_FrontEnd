@@ -40,6 +40,7 @@ const Activities = ({token, search, setSearch}) => {
                 <input type="text" name="search" placeholder="Search Activity" value={search} onChange={handleSearch}></input>
                 {/* <button style={{ fontSize: "15px" }} onClick={handleClick}>Create a Routine +</button> */}
             </form>
+            <h1 id= "activity-header">Activities</h1>
             { activities ?
             
             activities.filter(activity => {
@@ -48,19 +49,16 @@ const Activities = ({token, search, setSearch}) => {
                 .includes(search.toLowerCase())
             }).map((activity) => {
                 return (
-                    <>
+                <>
                     <div id="activity-form" onClick={(event) => {
                         {handleActivities(event, activity)}
                     }}>
                     </div>
-                        <div>
-                            <b>By: </b> {activity.creatorName}
-                        </div>
-                        <div>
-                            <b></b> {activity.name}
-                            <b></b> {activity.description}
-                        </div>
-                    </>
+                    <div id= "activity-card">
+                        <h2>{activity.name}</h2>
+                        <p>{activity.description}</p>
+                    </div>
+                </>
                 )
             }): null 
         }

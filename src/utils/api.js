@@ -114,9 +114,13 @@ export const fetchLogin = async (username, password) => {
 }
 
 
-export const fetchCreateRoutine = async (name, goal, isPublic) => {
+export const fetchCreateRoutine = async (token, name, goal, isPublic) => {
     const response = await fetch(`${APIURL}/routines`,{
         method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify({
             name: name,
             goal: goal,
@@ -126,7 +130,12 @@ export const fetchCreateRoutine = async (name, goal, isPublic) => {
 
     const result = await response.json();
     console.log("POST FORM", result)
-    return result
+    if(!result.creatorId){
+        alert(result.error)
+    }else{
+        alert("ROUTINE POSTED!")
+        return result
+    }
     
 
 }

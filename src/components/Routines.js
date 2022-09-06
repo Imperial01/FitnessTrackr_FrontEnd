@@ -36,8 +36,6 @@ const Routines = (props) => {
     }
 
 
-
-
     useEffect(() => {
         routinePost();
     }, []);
@@ -51,10 +49,10 @@ const Routines = (props) => {
         event.preventDefault();
     }
 
-    // const handleClick = () => {
-    //     token ? history.push('/createform') :
-    //         alert("Please Login")
-    // }
+    const handleClick = () => {
+        token ? history.push('/MyRoutines') :
+            alert("Please Login")
+    }
 
     // const handleFeaturedRoutine = (event, routine) => {
     //     // grab that routine and display on screen
@@ -73,30 +71,28 @@ const Routines = (props) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="search" placeholder="Search Routine" value={search} onChange={handleSearch}></input>
-                {/* <button style={{ fontSize: "15px" }} onClick={handleClick}>Create a Routine +</button> */}
+                <button style={{ fontSize: "15px" }} onClick={handleClick}>Create a Routine +</button> 
             </form>
+            <h1 id="routines-header">Routines</h1>
             { routines ?
                 routines.filter(routine => {
         
-                    return `${routine.name}`
-                    //After creating a post, I can't see my Posts because of a TypeError "Cannot read properties of undefined (reading "title") Post.js line 49:1
+                    return `${routine.name} ${routine.creatorName}`
                         .toLowerCase()
                         .includes(search.toLowerCase())
-                    }).map((routine) => {
-          console.log("ROUTINE CHECK-------",routine.activities.name)
+                    }).map((routine => {
                     return (
                         <>
-                            {/* <div onClick={(event) => {
-                                { handleFeaturedRoutine(event, routine) }
-                            }}> */}
+                            <div id="routine-card" key = {routine.id}>
                                 <h1>{routine.name}</h1>
                                 <p>{routine.goal}</p>
-                                <b>By: </b> {routine.creatorName}
+                                <p>By: {routine.creatorName}</p>
+                            </div>
                                 {
                                 routine.activities.map((activities) => {
                                     return(
                                         <>
-                                        <div key = {activities.id}>
+                                        <div id= "activities-container" key = {activities.id}>
                                             <b>Name: </b> {activities.name} <br/>
                                             <b>Description:</b> {activities.description}<br/>
                                             <b>Duration:</b> {activities.duration} <br/>
@@ -104,10 +100,10 @@ const Routines = (props) => {
                                         </div>
                                         </>
                                     )
-                                    })}
+                                })}
                         </>
                     );
-                }): null
+                })): null
             }
         </div>
     );

@@ -55,7 +55,8 @@ const App = () => {
                 setUsername = {setUsername} setUser = {setUser}/>
             </Route>        
             <Route path = '/Routines'>
-              <Routines setSearch = {setSearch} search = {search} routines = {routines} setRoutines = {setRoutines}/> 
+              <Routines setSearch = {setSearch} search = {search} 
+              routines = {routines} setRoutines = {setRoutines} token = {token} /> 
             </Route>
             <Route path = '/MyRoutines'>
               <CreateRoutine token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} /> 
