@@ -1,0 +1,24 @@
+#routine-card{
+    border: 2px solid black;
+    background-color: lightgray;
+}
+
+#activities-container{
+    border: 2px solid rgb(115, 118, 134);
+    background: ivory
+}
+
+#activity-card{
+    border: 2px solid black;
+    background-color: lightgray;
+}
+#activity-header{
+    display: flex;
+    justify-content: center;
+
+}
+#routines-header{
+    display: flex;
+    justify-content: center;
+    
+}

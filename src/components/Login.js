@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { fetchLogin } from '../utils/api'
 
 
@@ -10,6 +11,7 @@ const Login = ({
     setUsername}) => {
 
     const [password, setPassword] = useState('');
+    const history = useHistory();
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);
@@ -23,9 +25,13 @@ const Login = ({
     const handleSubmit = async (event) => {
         event.preventDefault();
         const login = await fetchLogin(username, password);
-        console.log(login.token);
         setUser(login.user);
         setToken(login.token);
+        alert(login.message)
+        setUsername('')
+        setPassword('')
+        history.push('/MyRoutines')
+        
     }
 
     return (<>
@@ -37,7 +43,7 @@ const Login = ({
                     <input type="text" name="username" value={username} onChange={handleChangeUser} required/>
                     <label htmlFor="Password">Password</label>
                     <input type="password" name="password" value={password} onChange={handleChangePassword} required/>
-                    <button className="login-button" type = "submit">Login In</button>
+                    <button className="login-button" type = "submit">Log in</button>
                 </form>
             </div> 
         
