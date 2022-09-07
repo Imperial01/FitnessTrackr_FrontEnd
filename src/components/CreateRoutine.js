@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { fetchCreateRoutine } from "../utils/api";
 
 
 const CreateRoutine = ({token, routines, setRoutines, setRoutineId}) => {
 
     const [name, setName] = useState('')
     const [goal, setGoal] = useState('')
+    const [isPublic] = useState(null)
     const history = useHistory();
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         if(token){
-            const createRoutinueForm = await fetchCreateRoutine(name, goal, isPublic)
-            setRoutines([createRoutinueForm, ...routines])
-            setRoutineId(createRoutinueForm.creatorId)
+            const createRoutineForm = await fetchCreateRoutine(token, name, goal, isPublic)
+            console.log(createRoutineForm)
+            setRoutines([createRoutineForm, ...routines])
+            setRoutineId(createRoutineForm.creatorId)
             history.push('/routines')
         }
     }
