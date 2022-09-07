@@ -55,14 +55,14 @@ const App = () => {
                 setUsername = {setUsername} setUser = {setUser}/>
             </Route>        
             <Route path = '/Routines'>
-              <Routines setSearch = {setSearch} search = {search} 
-              routines = {routines} setRoutines = {setRoutines} token = {token} /> 
+            <Routines setSearch = {setSearch} search = {search} 
+            routines = {routines} setRoutines = {setRoutines} token = {token} /> 
             </Route>
             <Route path = '/MyRoutines'>
-              <CreateRoutine token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} /> 
+            <CreateRoutine token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} /> 
             </Route>
             <Route path = '/activities'>
-              <Activities token = {token} search = {search} setSearch = {setSearch}/> 
+            <Activities token = {token} search = {search} setSearch = {setSearch}/> 
             </Route>
         </Switch>
 
