@@ -7,7 +7,7 @@ const CreateRoutine = ({token, routines, setRoutines, setRoutineId}) => {
 
     const [name, setName] = useState('')
     const [goal, setGoal] = useState('')
-    const [isPublic] = useState(null)
+    const [isPublic, setIsPublic] = useState(false)
     const history = useHistory();
 
 
@@ -35,6 +35,7 @@ const CreateRoutine = ({token, routines, setRoutines, setRoutineId}) => {
                     <br />
                     <label>Goal:</label>
                     <input type="text" placeholder="Enter a Goal" value={goal} onChange={(event)=> setGoal(event.target.value)}></input>
+                    <input type= "checkbox" value={isPublic} onChange={()=> setIsPublic(true)}></input>
                     <button id="form-submit" type="submit" onClick={handleSubmit}>Submit</button>
                 </form>  
             </div>
