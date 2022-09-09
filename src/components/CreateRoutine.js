@@ -8,7 +8,6 @@ const CreateRoutine = ({token, routines, setRoutines, setRoutineId}) => {
     const [name, setName] = useState('')
     const [goal, setGoal] = useState('')
     const [isPublic, setIsPublic] = useState(false)
-    const history = useHistory();
 
 
     const handleSubmit = async (event) => {
@@ -18,7 +17,6 @@ const CreateRoutine = ({token, routines, setRoutines, setRoutineId}) => {
             console.log(createRoutineForm)
             setRoutines([createRoutineForm, ...routines])
             setRoutineId(createRoutineForm.creatorId)
-            history.push('/routines')
         }
     }
 
