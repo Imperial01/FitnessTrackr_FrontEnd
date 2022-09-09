@@ -6,6 +6,7 @@ import Routines from "./Routines";
 import Login from "./Login";
 import CreateRoutine from "./CreateRoutine";
 import Activities from "./Activities";
+import { MyRoutines } from ".";
 
 
 
@@ -55,11 +56,12 @@ const App = () => {
                 setUsername = {setUsername} setUser = {setUser}/>
             </Route>        
             <Route path = '/Routines'>
+            <CreateRoutine token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} /> 
             <Routines setSearch = {setSearch} search = {search} 
             routines = {routines} setRoutines = {setRoutines} token = {token} /> 
             </Route>
             <Route path = '/MyRoutines'>
-            <CreateRoutine token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} /> 
+            <MyRoutines token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} user = {user}/> 
             </Route>
             <Route path = '/activities'>
             <Activities token = {token} search = {search} setSearch = {setSearch}/> 
