@@ -56,10 +56,7 @@ const Routines = (props) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="search" placeholder="Search Routine" value={search} onChange={handleSearch}></input>
-                <button style={{ fontSize: "15px" }} onClick={handleClick}>Create a Routine +</button> 
-            </form>
+
             <h1 id="routines-header">Routines</h1>
         {
                     routines.map((routine => {
@@ -71,7 +68,9 @@ const Routines = (props) => {
                                 <p>By: {routine.creatorName}</p>
                             </div>
                                 {
+                                    routine.activities ?                                
                                 routine.activities.map((activities) => {
+                                        
                                     return(
                                         <>
                                         <div id= "activities-container" key = {activities.id}>
@@ -82,7 +81,7 @@ const Routines = (props) => {
                                         </div>
                                         </>
                                     )
-                                })}
+                                }): null}
                         </>
                     );
                 }))}
