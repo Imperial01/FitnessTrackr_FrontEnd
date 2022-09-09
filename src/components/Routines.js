@@ -54,19 +54,6 @@ const Routines = (props) => {
             alert("Please Login")
     }
 
-    // const handleFeaturedRoutine = (event, routine) => {
-    //     // grab that routine and display on screen
-    //     if (token) {
-    //         setFeaturedRoutine(routine);
-    //         setRoutineID(routine._id)
-    //         history.push(`/routines/${routine._id}`)
-    //     } else {
-    //         alert("please Login")
-    //     }
-
-    //     // change the URL path to ${APIURL}/routine/routineID
-    // }
-
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -74,13 +61,8 @@ const Routines = (props) => {
                 <button style={{ fontSize: "15px" }} onClick={handleClick}>Create a Routine +</button> 
             </form>
             <h1 id="routines-header">Routines</h1>
-            { routines ?
-                routines.filter(routine => {
-        
-                    return `${routine.name} ${routine.creatorName}`
-                        .toLowerCase()
-                        .includes(search.toLowerCase())
-                    }).map((routine => {
+        {
+                    routines.map((routine => {
                     return (
                         <>
                             <div id="routine-card" key = {routine.id}>
@@ -103,10 +85,14 @@ const Routines = (props) => {
                                 })}
                         </>
                     );
-                })): null
-            }
+                }))}
         </div>
     );
 };
 
 export default Routines;
+
+
+
+
+//somethings wrong with the search. Filter or passing routines in is the problem
