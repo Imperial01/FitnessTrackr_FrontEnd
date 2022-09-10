@@ -30,6 +30,7 @@ console.log('----user----', user)
                                 <h1>{routine.name}</h1>
                                 <p>{routine.goal}</p>
                                 <p>By: {routine.creatorName}</p>
+                                
                             </div>
                         </>
                     );

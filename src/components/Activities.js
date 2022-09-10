@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchActivities } from "../utils/api";
 
-const Activities = ({token}) => {
-    const [activities, setActivities] = useState([])
-    const [activitiesId, setActivitiesId ] = useState('')
+const Activities = ({token, activities, setActivities}) => {
 
 
     const activity = async () => {

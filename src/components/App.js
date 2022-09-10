@@ -86,7 +86,7 @@ const App = () => {
             </Route>
             <Route path = '/activities'>
             <FormActivities token = {token} activities = {activities} setActivities = {setActivities} setActivitiesId = {setActivitiesId}/>
-            <Activities token = {token}/> 
+            <Activities token = {token} activities = {activities} setActivities = {setActivities} setActivitiesId = {setActivitiesId}/> 
             </Route>
         </Switch>
 
