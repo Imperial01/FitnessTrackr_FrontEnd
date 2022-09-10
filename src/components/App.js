@@ -7,6 +7,7 @@ import Login from "./Login";
 import CreateRoutine from "./CreateRoutine";
 import Activities from "./Activities";
 import { MyRoutines } from ".";
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -18,6 +19,19 @@ const App = () => {
     const [username, setUsername] = useState(localStorage.getItem('username') || '')
     const [routineId, setRoutineId] = useState('')
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {})
+    const history = useHistory()
+
+
+    const logout = async (event) => {
+        console.log('logout')
+        event.preventDefault();
+        setUsername('')
+        setToken('')
+        setUser({})
+        localStorage.clear()
+        history.push('/home')
+        
+    }
 
     return <main>
         <nav id= 'navbar'>
@@ -26,10 +40,14 @@ const App = () => {
                 <NavLink to ="/routines" className= "navlink" activeClassName = "active"> Routines</NavLink> |
                 <NavLink to ="/MyRoutines" className= "navlink" activeClassName = "active"> My Routines</NavLink> |
                 <NavLink to ="/activities" className= "navlink" activeClassName = "active"> Activities</NavLink> |
-                <NavLink to ="/login" className= "navlink" activeClassName = "active"> Login</NavLink> |
-                <NavLink to ="/register" className= "navlink" activeClassName = "active"> Register</NavLink> 
+                {!token ?
+                <>
+                <NavLink to ="/login" className= "navlink" activeClassName = "active" > Login</NavLink> |
+                <NavLink to ="/register" className= "navlink" activeClassName = "active"> Register</NavLink>
+                </>:
+                <button className="login-button"  onClick={logout}>Log out</button>
 
-
+                }
             </div>
         </nav>
 
