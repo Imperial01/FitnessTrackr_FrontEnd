@@ -3,9 +3,7 @@ import { fetchAllRoutines } from "../utils/api";
 
 const MyRoutines = (props) => {
     const {
-        routines, setRoutines,
-        routineID, setRoutineID, token,
-        featuredPost, setFeaturedRoutine, search, setSearch, user } = props
+        routines, setRoutines, user } = props
 
         console.log(user)
     const myRoutinePost = async () => {
@@ -17,7 +15,7 @@ const MyRoutines = (props) => {
         myRoutinePost();
     }, []);
 
-
+console.log('----user----', user)
     return (
 
         <div>

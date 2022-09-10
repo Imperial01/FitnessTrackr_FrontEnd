@@ -14,10 +14,10 @@ import { MyRoutines } from ".";
 const App = () => {
     const [routines, setRoutines] = useState([])
     const [search, setSearch] = useState('')
-    const [token, setToken] = useState('')
-    const [username, setUsername] = useState('')
+    const [token, setToken] = useState(localStorage.getItem('token') || '')
+    const [username, setUsername] = useState(localStorage.getItem('username') || '')
     const [routineId, setRoutineId] = useState('')
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {})
 
     return <main>
         <nav id= 'navbar'>
@@ -43,7 +43,7 @@ const App = () => {
             </Route>
             <Route path = '/home'>
                 <h1>WELCOME {username} TO FITNESS TRACKER!</h1>
-                <Link exact to="/register">
+                <Link to="/register">
                     <button type="text" id="home-profile-btn">View Profile</button>
                 </Link>
             </Route>
@@ -56,11 +56,11 @@ const App = () => {
                 setUsername = {setUsername} setUser = {setUser}/>
             </Route>        
             <Route path = '/Routines'>
-            <CreateRoutine token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} /> 
             <Routines setSearch = {setSearch} search = {search} 
             routines = {routines} setRoutines = {setRoutines} token = {token} /> 
             </Route>
             <Route path = '/MyRoutines'>
+            <CreateRoutine token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} />
             <MyRoutines token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} user = {user}/> 
             </Route>
             <Route path = '/activities'>
