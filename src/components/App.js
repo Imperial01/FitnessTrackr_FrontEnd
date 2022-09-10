@@ -6,8 +6,9 @@ import Routines from "./Routines";
 import Login from "./Login";
 import CreateRoutine from "./CreateRoutine";
 import Activities from "./Activities";
-import { MyRoutines } from ".";
 import { useHistory } from 'react-router-dom';
+import { MyRoutines, FormActivities } from ".";
+
 
 
 
@@ -18,6 +19,8 @@ const App = () => {
     const [token, setToken] = useState(localStorage.getItem('token') || '')
     const [username, setUsername] = useState(localStorage.getItem('username') || '')
     const [routineId, setRoutineId] = useState('')
+    const [activities, setActivities] = useState('')
+    const [activitiesId, setActivitiesId] = useState('')
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {})
     const history = useHistory()
 
@@ -82,7 +85,8 @@ const App = () => {
             <MyRoutines token = {token} routines = {routines} setRoutines = {setRoutines} setRoutineId = {setRoutineId} user = {user}/> 
             </Route>
             <Route path = '/activities'>
-            <Activities token = {token} search = {search} setSearch = {setSearch}/> 
+            <FormActivities token = {token} activities = {activities} setActivities = {setActivities} setActivitiesId = {setActivitiesId}/>
+            <Activities token = {token}/> 
             </Route>
         </Switch>
 

@@ -1,63 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import { fetchCreateActivity } from "../utils/api";
 
-const FormActivities = () => {
-    const [activities, setActivities] = useState([]);
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const history = useHistory()
+const FormActivities = ({token, activities, setActivities, setActivitiesId}) => {
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(token) {
-            const createActivity = await fetchCreateActivity(token, name, description)
-            ([createActivity])
-            history.push('/activities')
-        } else {
-            alert("Please Login")
+        if(token){
+            const createActivityForm = await fetchCreateActivity(token, name, description)
+            console.log(createActivityForm)
+            setActivities([createActivityForm, ...activities])
         }
     }
 
-    useEffect(() => {
-        fetchCreateActivity()
-    }, [])
-
-
-    return (
-        <>
-            <div id="create-container">
-                <form onSubmit={handleSubmit}>
+    return (<>
+        {!token ? <h1>LOG IN TO CREATE ACTIVITY</h1>:
+    
+            <div id="activities-container">
+                <form id="createActivity">
                     <h2>Create an Activity</h2>
-                    <label>Name: </label>
-                        <input
-                            type="text"
-                            placeholder="enter activity name"
-                            value={name}
-                            onChange={(event) => {
-                                setName(event.target.value);
-                            }}
-                        ></input>
-                    <label>Description: </label>
-                        <input
-                            type="text"
-                            value={description}
-                            placeholder="enter activity description"
-                            onChange={(event) => {
-                                setDescription(event.target.value);
-                            }}
-                        ></input>
-                    <button type="submit">Add activity</button>
-                </form>
+                    <label>Name:</label>
+                    <input type="text" placeholder="Enter a Name" value={name} onChange={(event)=> setName(event.target.value)}></input>
+                    <br />
+                    <label>Description:</label>
+                    <input type="text" placeholder="Enter a Goal" value={description} onChange={(event)=> setDescription(event.target.value)}></input>
+                    <button id="form-submit" type="submit" onClick={handleSubmit}>Submit</button>
+                </form>  
             </div>
-            {token ? (
-                <>
-                    <CreateActivityForm
-                        activities={activities}
-                        setActivities={setActivities}
-                    />
-                </>
-            ) : null}   
+        }   
         </>
     )
 }

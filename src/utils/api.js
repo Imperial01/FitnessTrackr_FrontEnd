@@ -37,25 +37,23 @@ export const fetchActivities = async () => {
     return result
 }
 // fix try catch
-export const fetchCreateActivity = async (name, description) => {
-    try {
-        const response = await fetch(`${APIURL}/activities`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application.json',
-                'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-                name: name,
-                description: description
-            })    
+export const fetchCreateActivity = async (token, name, description) => {
+    const response = await fetch(`${APIURL}/activities`,{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            name: name,
+            description: description,
         })
-    
+    })
+
     const result = await response.json();
-    console.log(result);
-    } catch (error) {
-        console.error('Activity already created', error);
-    }
+    console.log("POST FORM", result)
+        alert("ACTIVITY POSTED!")
+        return result
 }
 
 export const fetchUpdateActivities = async (name, description, activityId) => {
