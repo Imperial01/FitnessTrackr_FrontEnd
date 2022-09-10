@@ -1,13 +1,25 @@
 import {React, useEffect} from "react";
-import { fetchAllRoutines } from "../utils/api";
+import { fetchAllRoutines, fetchDeleteRoutine, fetchUpdateRoutines } from "../utils/api";
+
 
 const MyRoutines = (props) => {
-    const {
-        routines, setRoutines, user } = props
+  
+    const { routines, setRoutines, user, token } = props
 
-        console.log(user)
     const myRoutinePost = async () => {
         setRoutines(await fetchAllRoutines())
+    }
+
+    const handleDelete = async (id) => {
+        const deleteRoutine = await fetchDeleteRoutine(token, id)
+        setRoutines(routines.filter(routine => { 
+            return routine.id !== deleteRoutine.id
+        }))
+    }
+
+    const updateMyRoutine = async (token, name, goal) => {
+        const updateRoutine = await fetchUpdateRoutines(token, name, goal)
+        
     }
 
 
@@ -15,7 +27,6 @@ const MyRoutines = (props) => {
         myRoutinePost();
     }, []);
 
-console.log('----user----', user)
     return (
 
         <div>
@@ -30,8 +41,11 @@ console.log('----user----', user)
                                 <h1>{routine.name}</h1>
                                 <p>{routine.goal}</p>
                                 <p>By: {routine.creatorName}</p>
+                                <button id="form-submit" onClick={()=> handleDelete(routine.id)}>Delete</button>
+
                                 
                             </div>
+
                         </>
                     );
                 }))}
