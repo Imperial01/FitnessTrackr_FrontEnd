@@ -56,9 +56,9 @@ export const fetchCreateActivity = async (token, name, description) => {
         return result
 }
 
-export const fetchUpdateActivities = async (name, description, activityId) => {
+export const fetchUpdateRoutines = async (token, name, goal) => {
     try {
-        const response = await fetch(`${APIURL}/Aactivities/${activityId}`, {
+        const response = await fetch(`${APIURL}/routines`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application.json',
@@ -66,13 +66,13 @@ export const fetchUpdateActivities = async (name, description, activityId) => {
             },
             body: JSON.stringify({
                 name: name,
-                description: description
+                goal: goal
             })
         })
         const result = await response.json();
         console.log(result);
     } catch (error) {
-        console.error('Activity could not be updated', error)
+        console.error('Routine could not be updated', error)
     }
 }
 
@@ -134,6 +134,20 @@ export const fetchCreateRoutine = async (token, name, goal, isPublic) => {
         alert("ROUTINE POSTED!")
         return result
     }
-    
+}
+
+export const fetchDeleteRoutine = async (token, id) => {
+    const response = await fetch(`${APIURL}/routines/${id}`,{
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    })
+
+    const result = await response.json();
+
+        alert("ROUTINE DELETED!")
+        return result
 
 }

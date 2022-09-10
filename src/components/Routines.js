@@ -20,7 +20,7 @@
 
 
 import { React, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { fetchAllRoutines } from "../utils/api";
 
 const Routines = (props) => {
