@@ -21,7 +21,6 @@ const Login = ({
         setPassword(event.target.value);
     }
 
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const login = await fetchLogin(username, password);

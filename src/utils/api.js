@@ -56,21 +56,23 @@ export const fetchCreateActivity = async (token, name, description) => {
         return result
 }
 
-export const fetchUpdateRoutines = async (token, name, goal) => {
+export const fetchUpdateRoutines = async (token, name, goal, id) => {
     try {
-        const response = await fetch(`${APIURL}/routines`, {
+        const response = await fetch(`${APIURL}/routines/${id}`, {
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application.json',
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify({
-                name: name,
-                goal: goal
+                name,
+                goal
+        
             })
         })
         const result = await response.json();
         console.log(result);
+        return result;
     } catch (error) {
         console.error('Routine could not be updated', error)
     }

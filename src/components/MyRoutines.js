@@ -1,10 +1,20 @@
-import {React, useEffect} from "react";
+import {React, useEffect, useState} from "react";
 import { fetchAllRoutines, fetchDeleteRoutine, fetchUpdateRoutines } from "../utils/api";
 
 
 const MyRoutines = (props) => {
   
     const { routines, setRoutines, user, token } = props
+    const [newName, setNewName] = useState('')
+    const [newGoal, setNewGoal] = useState('')
+    
+    const handleChangeNewName = (event) => {
+        setNewName(event.target.value);
+    }
+
+    const handleChangeNewGoal = (event) => {
+        setNewGoal(event.target.value);
+    }
 
     const myRoutinePost = async () => {
         setRoutines(await fetchAllRoutines())
@@ -17,8 +27,9 @@ const MyRoutines = (props) => {
         }))
     }
 
-    const updateMyRoutine = async (token, name, goal) => {
-        const updateRoutine = await fetchUpdateRoutines(token, name, goal)
+    const updateMyRoutine = async (id) => {
+        const updateRoutine = await fetchUpdateRoutines(token, newName, newGoal, id)
+        setRoutines(await fetchAllRoutines())
         
     }
 
@@ -43,7 +54,15 @@ const MyRoutines = (props) => {
                                 <p>By: {routine.creatorName}</p>
                                 <button id="form-submit" onClick={()=> handleDelete(routine.id)}>Delete</button>
 
-                                
+                                <form onSubmit={(e)=> {
+                                      e.preventDefault()
+                                      e.stopPropagation()
+                                      updateMyRoutine(routine.id)  
+                                    } }>
+                                    <input type="text" name="name" placeholder="name" value={newName} onChange={handleChangeNewName}></input>
+                                    <input type="text" name="goal" placeholder="goal" value={newGoal} onChange={handleChangeNewGoal} ></input>
+                                    <button id="form-submit" type="submit">Update</button>
+                                </form>
                             </div>
 
                         </>
