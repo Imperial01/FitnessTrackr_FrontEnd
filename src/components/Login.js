@@ -27,6 +27,9 @@ const Login = ({
         const login = await fetchLogin(username, password);
         setUser(login.user);
         setToken(login.token);
+        localStorage.setItem('user', JSON.stringify(login.user))
+        localStorage.setItem('token', login.token)
+        localStorage.setItem('username', username)
         alert(login.message)
         setUsername('')
         setPassword('')
@@ -46,10 +49,13 @@ const Login = ({
                     <button className="login-button" type = "submit">Log in</button>
                 </form>
             </div> 
-        
- 
 
     </>)
 }
 
 export default Login;
+
+
+
+/// logout 
+/// add local storage so that we can stay logged in between 
