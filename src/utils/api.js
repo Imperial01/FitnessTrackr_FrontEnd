@@ -1,4 +1,4 @@
-const APIURL = `http://fitnesstrac-kr.herokuapp.com/api`;
+const APIURL = `https://fitnesstrac-kr.herokuapp.com/api`;
 
 //USER ENDPOINTS
 export const fetchRegister = async (username, password) => {
